@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float startSpeed=10;
 	public float maxSpeed=100;
 	public float acc=1;
-	public float curSpeed;
+	private float curSpeed;
 
 	// Use this for initialization
 	void Start () {
