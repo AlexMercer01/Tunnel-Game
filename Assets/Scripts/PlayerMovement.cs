@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour {
 	public float maxSpeed=100;
 	public float acc=1;
 	private float curSpeed;
+	private float sideSpeed=50;
+	private float moveVertical;
+	private float moveHorizontal;
 
 	// Use this for initialization
 	void Start () {
@@ -18,5 +21,9 @@ public class PlayerMovement : MonoBehaviour {
 		rigidbody.AddForce (movement * curSpeed * Time.deltaTime);
 		curSpeed += acc;
 		curSpeed = Mathf.Clamp (curSpeed, startSpeed, maxSpeed);
+		moveVertical = GameObject.Find ("Player").GetComponent<PlayerMovement> ().moveVertical;
+		moveHorizontal = GameObject.Find ("Player").GetComponent<PlayerMovement> ().moveHorizontal;
+		Vector3 Smovement = new Vector3 (0.0f, moveVertical, -moveHorizontal);
+		rigidbody.AddForce (Smovement * sideSpeed * Time.deltaTime);
 	}
 }

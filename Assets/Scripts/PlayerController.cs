@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public float speed=10;
+	public float speed=50;
+	public float moveHorizontal;
+	public float moveVertical;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,9 +12,8 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical"); 
-		Vector3 movement = new Vector3 (0.0f, moveVertical, -moveHorizontal);
-		rigidbody.AddForce (movement * speed * Time.deltaTime);
+		moveHorizontal = Input.GetAxis ("Horizontal");
+		moveVertical = Input.GetAxis ("Vertical"); 
 	}
+
 }
