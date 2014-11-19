@@ -1,23 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
-
-	public float speed=50;
-	private float moveHorizontal;
-	private float moveVertical;
-
+public class PlayerController : ControllableBehaviour {
+	
+	public float startSpeed=10;
+	public float maxSpeed=100;
+	public float acc=0.01f;
+	private float curSpeed;
+	private float horizontalMovement;
+	private float verticalMovement;
+	
 	// Use this for initialization
 	void Start () {
-	
+		curSpeed = startSpeed;
 	}
-	
 	// Update is called once per frame
-	void Update () {
-		moveHorizontal = Input.GetAxis ("Horizontal");
-		moveVertical = Input.GetAxis ("Vertical"); 
-		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
-		rigidbody.AddForce (movement * speed * Time.deltaTime);
-	}
+
+
+	void FixedUpdate () {
+		curSpeed += acc;
+		curSpeed = Mathf.Clamp (curSpeed, startSpeed, maxSpeed);
+		rigidbody.velocity = new Vector3 (horizontalMovement,verticalMovement, curSpeed);
+
+		}
+	public override void moveHorizontal (float movementValue){
+			horizontalMovement = movementValue;
+		}
+		
+		public override void moveVertical (float movementValue){
+			verticalMovement = movementValue;
+		}
 
 }
