@@ -21,9 +21,9 @@ public class PlayerController : ControllableBehaviour {
 		curSpeed += acc;
 		curSpeed = Mathf.Clamp (curSpeed, startSpeed, maxSpeed);
 		rigidbody.velocity = new Vector3 (horizontalMovement,verticalMovement, curSpeed);
-
 		}
-	public override void moveHorizontal (float movementValue){
+
+		public override void moveHorizontal (float movementValue){
 			horizontalMovement = movementValue;
 		}
 		
